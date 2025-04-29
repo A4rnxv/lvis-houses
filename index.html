@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lotus Valley Competitions</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #fff; color: #333; }
+
+    header {
+      background: #003366; padding: 15px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      position: sticky; top: 0; z-index: 1000;
+    }
+    .logo-section { display: flex; align-items: center; }
+    .logo-section img { height: 50px; margin-right: 15px; }
+    .logo-text { font-size: 1.8rem; font-weight: bold; color: #FFD700; }
+    .hamburger { cursor: pointer; }
+    .bar { width: 25px; height: 3px; background: #fff; margin: 4px; }
+
+    nav {
+      display: none; flex-direction: column;
+      background: #003366; position: absolute;
+      top: 80px; right: 20px; border-radius: 5px;
+      overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    nav a {
+      padding: 10px 20px; color: #fff; text-decoration: none;
+      border-top: 1px solid #1e90ff;
+    }
+    nav a:hover { background: #1e90ff; }
+
+    /* Slider */
+    .slider {
+      width: 100%; max-width: 1000px; height: 450px;
+      margin: 30px auto; overflow: hidden; border-radius: 12px;
+      position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .slides {
+      display: flex; height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slides img {
+      min-width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .dots-container {
+      text-align: center; margin-top: 10px;
+    }
+    .dot {
+      display: inline-block; width: 12px; height: 12px;
+      margin: 0 5px; background: #bbb; border-radius: 50%;
+      cursor: pointer; transition: background 0.3s;
+    }
+    .dot.active { background: #003366; }
+
+    section {
+      margin: 40px auto; max-width: 1200px; padding: 30px;
+      background: #f9f9f9; border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h2 { color: #ff69b4; margin-bottom: 20px; }
+    p { margin-bottom: 15px; line-height: 1.6; }
+
+    .houses-grid {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap: 20px;
+    }
+    .house-card {
+      background: #fff; border: 2px solid #003366;
+      border-radius: 10px; padding: 20px; text-align: center;
+    }
+    .house-card img {
+      width: 100px; height: 100px; object-fit: contain;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-section">
+    <img src="https://www.lotusvalleynoidaextension.com/Images/emblem.jpg" alt="Logo">
+    <div class="logo-text">LVIS Competitions</div>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+  </div>
+  <nav id="navMenu">
+    <a href="index.html">Home</a>
+    <a href="competitions.html">Competitions</a>
+    <a href="index.html#faq">FAQs</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="slider">
+  <div class="slides" id="slides">
+    <img src="https://www.pfizer.co.uk/images/custom/Our-Partnerships-1000x450px.png" alt="">
+    <img src="https://chilesfamilyorchards.com/wp-content/uploads/2016/10/pumpkin-crafts-featured-1000x450px.jpg" alt="">
+    <img src="https://e3mag.com/wp-content/uploads/2024/10/1000x450px-E3-November-headbanner.jpg.webp" alt="">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO2Xxjbzeuj_8NocebIS7AzGEaq0VnNorKmw&s" alt="">
+  </div>
+</div>
+<div class="dots-container" id="dots"></div>
+
+<section id="home">
+  <h2>Welcome to LVIS Competitions Portal</h2>
+  <p>At Lotus Valley, we believe that competitions nurture the spirit of creativity, perseverance, and leadership. This portal is your one-stop destination to participate, explore, and celebrate various competitions across different fields like sports, art, literature, technology, and more.</p>
+  <p>Stay tuned for upcoming events, announcements, and results right here. Discover your potential and make your mark!</p>
+</section>
+
+<section id="competitions">
+  <h2>About Us</h2>
+  <p>Welcome to Lotus Valley International School Competitions Portal! Our school nurtures creativity, talent, and critical thinking through a wide range of competitions held throughout the year. Whether you are passionate about arts, sports, debates, or science fairs, you will find exciting opportunities to shine here.</p>
+  <p>We believe competitions foster leadership, teamwork, and perseverance — values that lie at the core of our educational philosophy.</p>
+</section>
+
+<section id="faq">
+  <h2>FAQs</h2>
+  <p><strong>Q:</strong> How do I register? <br><strong>A:</strong> Click “Competitions” tab to view open registrations!</p>
+  <p><strong>Q:</strong> Where can I check results? <br><strong>A:</strong> On the portal homepage & via school email.</p>
+  <p><strong>Q:</strong> Can I join multiple competitions? <br><strong>A:</strong> Yes, as per schedules and rules.</p>
+  <p><strong>Q:</strong> Who to contact for queries? <br><strong>A:</strong> Your house warden or event in-charge.</p>
+</section>
+
+<section class="houses">
+  <h2>Our Houses</h2>
+  <div class="houses-grid">
+    <a href="nehru.html" class="house-card">
+      <img src="https://www.shutterstock.com/shutterstock/photos/2397280773/display_1500/stock-photo-portrait-illustration-of-nation-hero-and-freedom-fighter-jawaharlal-nehru-pride-of-india-for-th-2397280773.jpg" alt="">
+      <h3>Nehru House</h3>
+    </a>
+    <a href="tagore.html" class="house-card">
+      <img src="https://cdn1.img.sputniknews.in/img/07e7/05/07/1848548_0:0:3121:1756_1920x0_80_0_0_824e28df5b543024a824412c3f8cd0b8.jpg.webp" alt="">
+      <h3>Tagore House</h3>
+    </a>
+    <a href="gandhi.html" class="house-card">
+      <img src="https://c7.alamy.com/comp/2B77FWJ/vector-portrait-of-mahatma-gandhi-2B77FWJ.jpg" alt="">
+      <h3>Gandhi House</h3>
+    </a>
+    <a href="teresa.html" class="house-card">
+      <img src="https://hallow.com/wp-content/uploads/2023/09/Saints-in-7-Days_-Mother-Teresa-1-1536x1076.png" alt="">
+      <h3>Teresa House</h3>
+    </a>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p><strong>Email:</strong> contact@lviscompetitions.com</p>
+  <p><strong>Phone:</strong> +91-123-456-7890</p>
+  <p><strong>Address:</strong> Lotus Valley International School, Gurugram</p>
+</section>
+
+<script>
+  const slidesEl = document.getElementById('slides');
+  const total = slidesEl.children.length;
+  let current = 0;
+
+  function showSlide(i) {
+    current = (i + total) % total;
+    slidesEl.style.transform = `translateX(-${current * 100}%)`;
+    document.querySelectorAll('.dot').forEach((d, idx) =>
+      d.classList.toggle('active', idx === current)
+    );
+  }
+
+  window.addEventListener('load', () => {
+    const dots = document.getElementById('dots');
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'dot';
+      dot.onclick = () => showSlide(i);
+      dots.appendChild(dot);
+    }
+    showSlide(0);
+    setInterval(() => showSlide(current + 1), 5000);
+  });
+
+  function toggleMenu() {
+    const nm = document.getElementById('navMenu');
+    nm.style.display = nm.style.display === 'flex' ? 'none' : 'flex';
+  }
+</script>
+
+</body>
+</html>
