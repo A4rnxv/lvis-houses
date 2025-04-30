@@ -145,7 +145,7 @@
   }
 
   function fetchCompetitions() {
-    fetch('http://localhost:5000/api/competitions')
+    fetch('https://teacher-backend-4d3v.onrender.com/api/competitions')
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch competitions');
         return res.json();
@@ -187,12 +187,7 @@
   function deleteCompetition(id) {
     console.log(`Deleting competition with ID: ${id}`);
 
-    if (!id || id.length !== 24) {
-      alert('Invalid MongoDB ID: ' + id);
-      return;
-    }
-
-    fetch(`http://localhost:5000/api/competitions/${id}`, {
+    fetch(`https://teacher-backend-4d3v.onrender.com/api/competitions/${id}`, {
       method: 'DELETE',
     })
     .then(res => {
@@ -213,7 +208,9 @@
 
     document.getElementById("eventName").value = card.querySelector("h4").innerText;
     document.getElementById("classGroup").value = getText("p:nth-of-type(1)");
-    document.getElementById("eventDate").value = getText("p:nth-of-type(2)");
+    const rawDate = getText("p:nth-of-type(2)");
+	const formattedDate = new Date(rawDate).toISOString().split('T')[0]; // "YYYY-MM-DD"
+	document.getElementById("eventDate").value = formattedDate;
     document.getElementById("venue").value = getText("p:nth-of-type(3)");
     document.getElementById("description").value = getText("p:nth-of-type(4)");
     document.getElementById("registrationLink").value = card.querySelector("a").href;
@@ -234,8 +231,8 @@
     };
 
     const url = editingId
-      ? `http://localhost:5000/api/competitions/${editingId}`
-      : 'http://localhost:5000/api/competitions';
+      ? `https://teacher-backend-4d3v.onrender.com/api/competitions/${editingId}`
+      : 'https://teacher-backend-4d3v.onrender.com/api/competitions';
 
     const method = editingId ? 'PUT' : 'POST';
 
