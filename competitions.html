@@ -101,27 +101,34 @@
 
     <script>
         // Fetch competitions from the backend API
-        fetch('http://localhost:5000/api/competitions')
-            .then(response => response.json())
-            .then(data => {
-                const competitionsContainer = document.getElementById('competitions-container');
-                data.forEach(competition => {
-                    const competitionElement = document.createElement('div');
-                    competitionElement.classList.add('competition');
-                    competitionElement.innerHTML = `
-                        <h2>${competition.eventName}</h2>
-                        <p><strong>Class Group:</strong> ${competition.classGroup}</p>
-                        <p><strong>Day/Date:</strong> ${competition.dayDate}</p>
-                        <p><strong>Venue:</strong> ${competition.venue}</p>
-                        <p><strong>Description:</strong> ${competition.shortDescription}</p>
-                        <a href="${competition.registrationLink}" target="_blank">Register Here</a>
-                    `;
-                    competitionsContainer.appendChild(competitionElement);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching competitions:', error);
-            });
+        fetch('https://teacher-backend-4d3v.onrender.com/api/competitions')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch competitions');
+        }
+        return response.json();
+    })
+    .then(data => {
+        const competitionsContainer = document.getElementById('competitions-container');
+        data.forEach(competition => {
+            const competitionElement = document.createElement('div');
+            competitionElement.classList.add('competition');
+            competitionElement.innerHTML = `
+                <h2>${competition.eventName}</h2>
+                <p><strong>Class Group:</strong> ${competition.classGroup}</p>
+                <p><strong>Day/Date:</strong> ${competition.dayDate}</p>
+                <p><strong>Venue:</strong> ${competition.venue}</p>
+                <p><strong>Description:</strong> ${competition.shortDescription}</p>
+                <a href="${competition.registrationLink}" target="_blank">Register Here</a>
+            `;
+            competitionsContainer.appendChild(competitionElement);
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching competitions:', error);
+        alert("Failed to load competitions. Please try again later.");
+    });
+
     </script>
 </body>
 </html>
