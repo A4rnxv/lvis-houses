@@ -133,6 +133,16 @@
   </div>
 </div>
 
+<h2>House Points</h2>
+<select id="houseName">
+  <option value="Gandhi">Gandhi</option>
+  <option value="Nehru">Nehru</option>
+  <option value="Tagore">Tagore</option>
+  <option value="Teresa">Teresa</option>
+</select>
+<input type="number" id="housePoints" placeholder="Enter points" />
+<button onclick="awardPoints()">Award Points</button>
+
 <script>
   function openModal() {
     document.getElementById("competitionModal").style.display = "flex";
@@ -257,6 +267,22 @@
   }
 
   window.onload = fetchCompetitions;
+  
+  function awardPoints() {
+    const house = document.getElementById("houseName").value;
+    const points = parseInt(document.getElementById("housePoints").value);
+
+    fetch(`https://teacher-backend-4d3v.onrender.com/api/houses/${house}/add`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ points })
+    })
+    .then(res => {
+      if (!res.ok) throw new Error('Failed to award points');
+      alert('Points awarded!');
+    })
+    .catch(err => alert(err.message));
+  }
 </script>
 </body>
 </html>
