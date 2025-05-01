@@ -5,45 +5,69 @@
   <title>House Leaderboard</title>
   <link rel="stylesheet" href="style.css"> <!-- Optional, if needed -->
   <style>
-    body {
-      text-align: center;
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-    }
+  body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+  }
 
-    .podium {
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      height: 60vh;
-      margin-top: 40px;
-    }
+  h1 {
+    margin-top: 30px;
+    font-size: 32px;
+  }
 
-    .podium .house {
-      margin: 0 20px;
-      padding: 10px;
-      border-radius: 10px;
-      background: #fff;
-      width: 150px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
+  .podium {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 40px;
+    gap: 30px;
+  }
 
-    .first { height: 250px; background-color: gold; }
-    .second { height: 200px; background-color: silver; }
-    .third { height: 150px; background-color: #cd7f32; }
+  .house {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    width: 160px;
+    padding: 15px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    transition: transform 0.3s ease;
+  }
 
-    .house img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 50%;
-    }
+  .house:hover {
+    transform: translateY(-5px);
+  }
 
-    .score {
-      font-size: 24px;
-      margin-top: 10px;
-    }
-  </style>
+  .house img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 4px solid white;
+    box-shadow: 0 0 8px rgba(0,0,0,0.15);
+  }
+
+  .house h3 {
+    margin: 5px 0 0;
+    font-size: 20px;
+  }
+
+  .house .score {
+    font-size: 18px;
+    margin-top: 4px;
+    font-weight: bold;
+  }
+
+  .first { height: 260px; background-color: #ffd700; }
+  .second { height: 220px; background-color: #c0c0c0; }
+  .third { height: 180px; background-color: #cd7f32; }
+</style>
 </head>
 <body>
   <h1>🏆 House Leaderboard</h1>
@@ -51,10 +75,10 @@
 
 <script>
   const houseImages = {
-    Gandhi: "gandhi.png",
-    Nehru: "nehru.png",
-    Tagore: "tagore.png",
-    Teresa: "teresa.png"
+    Nehru: 'nehru.png',
+    Gandhi: 'gandhi.png',
+    Teresa: 'teresa.png',
+    Tagore: 'tagore.png'
   };
 
   fetch('https://teacher-backend-4d3v.onrender.com/api/houses')
@@ -63,19 +87,22 @@
       const podium = document.getElementById('podium');
       data.forEach((house, index) => {
         const div = document.createElement('div');
-        div.className = `house ${['first', 'second', 'third'][index] || ''}`;
+        const rankClass = ['first', 'second', 'third'][index] || '';
+        div.className = `house ${rankClass}`;
 
-        const imgSrc = houseImages[house.name] || "placeholder.png"; // default fallback image
+        const imgSrc = houseImages[house.name] || 'placeholder.png';
 
         div.innerHTML = `
           <img src="${imgSrc}" alt="${house.name}">
           <h3>${house.name}</h3>
           <div class="score">${house.score} pts</div>
         `;
+
         podium.appendChild(div);
       });
     });
 </script>
+
 
 </body>
 </html>
