@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>House Leaderboard</title>
-  <link rel="stylesheet" href="style.css"> <!-- Use your existing CSS -->
+  <link rel="stylesheet" href="style.css"> <!-- Optional, if needed -->
   <style>
     body {
       text-align: center;
@@ -35,7 +35,8 @@
     .house img {
       width: 100px;
       height: 100px;
-      object-fit: contain;
+      object-fit: cover;
+      border-radius: 50%;
     }
 
     .score {
@@ -48,23 +49,33 @@
   <h1>🏆 House Leaderboard</h1>
   <div class="podium" id="podium"></div>
 
-  <script>
-    fetch('https://teacher-backend-4d3v.onrender.com/api/houses')
-      .then(res => res.json())
-      .then(data => {
-        const podium = document.getElementById('podium');
-        data.forEach((house, index) => {
-          const div = document.createElement('div');
-          div.className = `house ${['first', 'second', 'third'][index] || ''}`;
-          div.innerHTML = `
-            <img src="${house.image}" alt="${house.name}">
-            <h3>${house.name}</h3>
-            <div class="score">${house.score} pts</div>
-          `;
-          podium.appendChild(div);
-        });
+<script>
+  const houseImages = {
+    Gandhi: "gandhi.png",
+    Nehru: "nehru.png",
+    Tagore: "tagore.png",
+    Teresa: "teresa.png"
+  };
+
+  fetch('https://teacher-backend-4d3v.onrender.com/api/houses')
+    .then(res => res.json())
+    .then(data => {
+      const podium = document.getElementById('podium');
+      data.forEach((house, index) => {
+        const div = document.createElement('div');
+        div.className = `house ${['first', 'second', 'third'][index] || ''}`;
+
+        const imgSrc = houseImages[house.name] || "placeholder.png"; // default fallback image
+
+        div.innerHTML = `
+          <img src="${imgSrc}" alt="${house.name}">
+          <h3>${house.name}</h3>
+          <div class="score">${house.score} pts</div>
+        `;
+        podium.appendChild(div);
       });
-	</script>
-	
+    });
+</script>
+
 </body>
 </html>
